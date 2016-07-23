@@ -28,9 +28,14 @@
 
 """Setup.py for Python, as Generic as possible."""
 
+
 import os
 import re
-from setuptools import setup, find_packages
+
+from setuptools import setup, Command, find_packages
+from tempfile import TemporaryDirectory
+from shutil import copytree
+from zipapp import create_archive
 
 
 ##############################################################################
@@ -39,7 +44,6 @@ from setuptools import setup, find_packages
 
 DESCRIPTION = ("StandAlone Async single-file cross-platform no-dependencies"
                  " Unicode-ready Python3-ready Minifier for the Web.")
-REQUIREMENTS_FILE = os.path.join(os.path.dirname(__file__), "requirements.txt")
 
 
 ##############################################################################
@@ -64,13 +68,30 @@ def parse_metadata(path):
     return metadata
 
 
-print("Starting build of setuptools.setup().")
+class ZipApp(Command):
+    description, user_options = "Creates a zipapp.", []
+
+    def initialize_options(self): pass  # Dont needed, but required.
+
+    def finalize_options(self): pass  # Dont needed, but required.
+
+    def run(self):
+        with TemporaryDirectory() as tmpdir:
+            copytree('.', os.path.join(tmpdir, 'css-html-js-minify'))
+            fyle = os.path.join(tmpdir, '__main__.py')
+            with open(fyle, 'w', encoding='utf-8') as entry:
+                entry.write("import runpy\nrunpy.run_module('css-html-js-minify')")
+            create_archive(tmpdir, 'css-html-js-minify.pyz', '/usr/bin/env python3', "css-html-js-minify")
+
 
 # Generate metadata used by setuptools.setup()
 metadata = parse_metadata('css_html_js_minify/__init__.py')
+print("Starting build of setuptools.setup().")
+
 
 ##############################################################################
 # EDIT HERE
+
 
 setup(
 
@@ -98,6 +119,8 @@ setup(
     requires=['anglerfish'],
 
     scripts=['css-html-js-minify.py'],
+
+    cmdclass={"zipapp": ZipApp},
 
     keywords=['CSS', 'HTML', 'JS', 'Compressor', 'CSS3', 'HTML5', 'Web',
               'Javascript', 'Minifier', 'Minify', 'Uglify', 'Obfuscator'],
