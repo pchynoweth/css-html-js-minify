@@ -92,8 +92,10 @@ setup(
     include_package_data=True,
     zip_safe=True,
 
-    requires=['anglerfish'],
     install_requires=['anglerfish'],
+    setup_requires=['anglerfish'],
+    tests_require=['anglerfish'],
+    requires=['anglerfish'],
 
     scripts=['css-html-js-minify.py'],
 
