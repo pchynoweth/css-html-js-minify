@@ -14,11 +14,10 @@ https://pypi.python.org/pypi/css-html-js-minify
 css-html-js-minify.py --help
 
 usage: css-html-js-minify.py [-h] [--version] [--wrap] [--prefix PREFIX]
-                             [--timestamp] [--quiet] [--obfuscate]
-                             [--checkupdates] [--tests] [--hash] [--gzip]
+                             [--timestamp] [--quiet] [--hash] [--zipy]
                              [--sort] [--comments] [--overwrite]
                              [--after AFTER] [--before BEFORE] [--watch]
-                             [--multiple]
+                             [--multiple] [--beep]
                              fullpath
 
 CSS-HTML-JS-Minify. StandAlone Async cross-platform Unicode-ready Python3-ready Minifier for the Web.
