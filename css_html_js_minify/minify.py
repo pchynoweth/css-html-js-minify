@@ -31,7 +31,7 @@ from anglerfish import (check_encoding, check_folder, make_logger,
                         set_terminal_title)
 
 
-__version__ = '2.0.2'
+__version__ = '2.2.2'
 __license__ = 'GPLv3+ LGPLv3+'
 __author__ = 'Juan Carlos'
 __email__ = 'juancarlospaco@gmail.com'
@@ -239,17 +239,18 @@ def make_arguments_parser():
                         help="Allow Multiple instances (Not Recommended).")
     parser.add_argument('--beep', action='store_true',
                         help="Beep sound will be played when it ends at exit.")
-    # global args
     return parser.parse_args()
 
 
 def prepare():
+    """Prepare basic setup for main loop running."""
     global log
     log = make_logger("css-html-js-minify")  # AutoMagically make a Logger Log
     set_terminal_title("css-html-js-minify")
     check_encoding()  # AutoMagically Check Encodings/root
     set_process_name("css-html-js-minify")  # set Name
     set_single_instance("css-html-js-minify")  # set Single Instance
+    return log
 
 
 def main():
