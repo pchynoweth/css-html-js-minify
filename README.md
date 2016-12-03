@@ -198,6 +198,12 @@ This will make a copy of all `*.html` renaming them as `*.htm` recursively from 
 - If there are any kind of tests, they must pass. No tests is also acceptable, but having tests is better.
 
 
+# JavaScript support
+
+- ES6 and ES7 and future standards may not be fully supported since they change quickly, mainly driven by Node.JS releases.
+- Future JavaScript support is orphan, if you want to make ES6, ES7 work feel free to send pull request, we will merge it.
+
+
 # Contributors:
 
 | **Hall of Fame** |
