@@ -42,8 +42,8 @@ from zipapp import create_archive
 # EDIT HERE
 
 
-DESCRIPTION = ("StandAlone Async single-file cross-platform no-dependencies"
-                 " Unicode-ready Python3-ready Minifier for the Web.")
+DESCRIPTION = ("""Stand-alone asynchronous cross-platform Unicode-ready 
+Python3-ready Minifier for the Web.""")
 
 
 ##############################################################################
