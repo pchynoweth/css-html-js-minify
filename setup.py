@@ -118,7 +118,13 @@ setup(
     tests_require=['anglerfish'],
     requires=['anglerfish'],
 
-    scripts=['css-html-js-minify.py'],
+    # scripts=['css-html-js-minify.py'],  # uncomment if want install as script
+
+    entry_points={
+         'console_scripts': [
+             "css-html-js-minify = css_html_js_minify.minify:main",
+         ],
+     },
 
     cmdclass={"zipapp": ZipApp},
 
