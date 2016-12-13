@@ -31,7 +31,7 @@ from anglerfish import (check_encoding, check_folder, make_logger,
                         set_terminal_title)
 
 
-__version__ = '2.2.2'
+__version__ = '2.5.0'
 __license__ = 'GPLv3+ LGPLv3+'
 __author__ = 'Juan Carlos'
 __email__ = 'juancarlospaco@gmail.com'
@@ -245,7 +245,7 @@ def make_arguments_parser():
 def prepare():
     """Prepare basic setup for main loop running."""
     global log
-    log = make_logger("css-html-js-minify")  # AutoMagically make a Logger Log
+    log = make_logger("css-html-js-minify", emoji=True)  # Make a Logger Log.
     set_terminal_title("css-html-js-minify")
     check_encoding()  # AutoMagically Check Encodings/root
     set_process_name("css-html-js-minify")  # set Name
