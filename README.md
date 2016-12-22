@@ -221,6 +221,13 @@ This will make a copy of all `*.html` renaming them as `*.htm` recursively from 
 
 - GNU GPL Latest Version *AND* GNU LGPL Latest Version *AND* any Licence [YOU Request via Bug Report](https://github.com/juancarlospaco/css-html-js-minify/issues/new).
 
+This work is free software: 
+You can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+This work is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; 
+Without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+See the GNU General Public License for more details.
+You should have received a copy of the GNU General Public License along with this work.
+
 
 # Ethics and Humanism Policy:
 - May this FLOSS be always Pristine and Clean, No AdWare, No Spamm, No BundleWare, No Infomercial, No MalWare.
