@@ -12,6 +12,7 @@ import atexit
 import os
 import sys
 import gzip
+import logging as log
 
 from argparse import ArgumentParser
 from datetime import datetime
