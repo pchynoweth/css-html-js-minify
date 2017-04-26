@@ -74,7 +74,7 @@ def remove_html_comments(html):
     """  # Grunt uses comments to as build arguments, bad practice but still.
     log.debug("""Removing all unnecessary HTML comments; Keep all containing:
     'build:', 'endbuild', '<!--[if]>', '<![endif]-->' for Grunt/Grymt, IE.""")
-    return re.compile('<!-- (?!(build|endbuild)).*? -->', re.I).sub('', s)
+    return re.compile('<!-- (?!(build|endbuild)).*? -->', re.I).sub('', html)
 
 
 def unquote_html_attributes(html):
