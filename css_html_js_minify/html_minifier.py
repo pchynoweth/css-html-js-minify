@@ -32,7 +32,7 @@ def condense_html_whitespace(html):
             else:
                 tagsStack.append(tag)
             continue
-		
+
 		#else check if we are outside any nested <pre>/<textarea> tag
         if not tagsStack:
             temp = re.sub(r'>\s+<', '> <', split[i])
@@ -41,7 +41,6 @@ def condense_html_whitespace(html):
 
 
 def rawtag(str):
-    print(str)
     if re.match('<\\s*pre.*>', str, flags=re.IGNORECASE):
         return 'pre'
     if re.match('<\\s*textarea.*>', str, flags=re.IGNORECASE):
