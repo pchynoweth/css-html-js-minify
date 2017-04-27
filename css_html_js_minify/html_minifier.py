@@ -20,10 +20,35 @@ def condense_html_whitespace(html):
     '<i><b><a> test </a></b></i><br>'
     """  # first space between tags, then empty new lines and in-between.
     log.debug("Removing unnecessary HTML White Spaces and Empty New Lines.")
-    is_ok = "<textarea" not in html.lower() and "<pre" not in html.lower()
-    html = re.sub(r'>\s+<', '> <', html) if is_ok else html
-    return re.sub(r'\s{2,}|[\r\n]', ' ', html) if is_ok else html.strip()
+    tagsStack = []
+    split = re.split('(<\\s*pre.*>|<\\s*/\\s*pre\\s*>|<\\s*textarea.*>|<\\s*/\\s*textarea\\s*>)', html, flags=re.IGNORECASE)
+    for i in range(0, len(split)):
+    	#if we are on a tag
+        if (i + 1) % 2 == 0:
+            tag = rawtag(split[i])
+            if tag.startswith('/'):
+                if not tagsStack or '/' + tagsStack.pop() != tag:
+                    raise Exception("Some tag is not closed properly")
+            else:
+                tagsStack.append(tag)
+            continue
 
+		#else check if we are outside any nested <pre>/<textarea> tag
+        if not tagsStack:
+            temp = re.sub(r'>\s+<', '> <', split[i])
+            split[i] = re.sub(r'\s{2,}|[\r\n]', ' ', temp)
+    return ''.join(split)
+
+
+def rawtag(str):
+    if re.match('<\\s*pre.*>', str, flags=re.IGNORECASE):
+        return 'pre'
+    if re.match('<\\s*textarea.*>', str, flags=re.IGNORECASE):
+        return 'txt'
+    if re.match('<\\s*/\\s*pre\\s*>', str, flags=re.IGNORECASE):
+        return '/pre'
+    if re.match('<\\s*/\\s*textarea\\s*>', str, flags=re.IGNORECASE):
+        return '/txt'
 
 def condense_style(html):
     """Condense style html tags.
@@ -74,7 +99,7 @@ def remove_html_comments(html):
     """  # Grunt uses comments to as build arguments, bad practice but still.
     log.debug("""Removing all unnecessary HTML comments; Keep all containing:
     'build:', 'endbuild', '<!--[if]>', '<![endif]-->' for Grunt/Grymt, IE.""")
-    return re.compile('<!-- (?!(build|endbuild)).*? -->', re.I).sub('', html)
+    return re.compile('<!-- [^(build|endbuild)].*? -->', re.I).sub('', html)
 
 
 def unquote_html_attributes(html):
