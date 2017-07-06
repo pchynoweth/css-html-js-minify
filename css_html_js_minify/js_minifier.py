@@ -20,9 +20,9 @@ def remove_commented_lines(js):
     log.debug("Force remove commented out lines from Javascript.")
     result = ""
     for line in js.splitlines():
-        if line.strip().startswith("//") and not line.strip().endswith("*/"):
-            continue
-        result += line
+        line = re.sub(r"/\*.*\*/" ,"" ,line) # (/*COMMENT */)
+        line = re.sub(r"//.*","" ,line) # (//COMMENT)
+        result += '\n'+line
     return result
 
 
