@@ -149,7 +149,7 @@ def html_minify(html, comments=False):
     html = remove_html_comments(html) if not comments else html
     html = condense_style(html)
     html = condense_script(html)
-    html = clean_unneeded_html_tags(html)
+    #html = clean_unneeded_html_tags(html)
     html = condense_html_whitespace(html)
     html = unquote_html_attributes(html)
     log.info("Finished compressing HTML !.")
